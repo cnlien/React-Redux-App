@@ -1,0 +1,17 @@
+.appHeader {
+    border-bottom: 1px solid black;
+    padding-bottom: 30px;
+    text-align: center;
+
+    .mainHeading {
+        font-size: 40px;
+    }
+
+    .lastUpdatedLabel {
+        font-weight: bolder;
+    }
+
+    .lastUpdatedTime {
+        font-style: italic;
+    }
+}

@@ -1,39 +1,62 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
+// REDUX
+import { connect } from 'react-redux';
 import { fetchSummaryData } from '../actions';
 
+// LAYOUT
+import Grid from '@material-ui/core/Grid';
+import Container from '@material-ui/core/Container';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import LinearProgress from '@material-ui/core/LinearProgress';
+
+// COMPONENTS
+import DataCards from './DataCards';
+import Header from './Header';
+
 const SearchData = ( props ) => {
-    console.log(props)
+
+    const Title = (props) => {
+        return(
+            <Grid container spacing={12} direction="row">
+                <h1>{props.title}</h1>
+            </Grid>
+        )
+    }
+
     if (props.isFetching) {
         return(
-            <div>
+            <Container>
+                <CssBaseline />
                 {props.fetchSummaryData()}
-                Fetching Covid Data
-            </div>
+                <LinearProgress />
+            </Container>
         )
     }
 
     return(
-        <div>
-            <h1>Global Covid 19 Statistics</h1>
-            <span>Updated: {props.data.Date}</span>
-            <hr />
-            <ul>
-                <li>New Confirmed: {props.data.Global.NewConfirmed}</li>
-                <li>New Deaths: {props.data.Global.NewDeaths}</li>
-                <li>New Recovered: {props.data.Global.NewRecovered}</li>
-                <li>Total Confirmed: {props.data.Global.TotalConfirmed}</li>
-                <li>Total Deaths: {props.data.Global.TotalDeaths}</li>
-                <li>Total Recovered: {props.data.Global.TotalRecovered}</li>
+        <Container>
+            <Header date={props.data.Date} />
+            
+            <Title title="Cases" />
+            <Grid container spacing={3} direction="row" justify="center" alignItems="flex-start">
+                <DataCards title="New Confirmed" data={props.data.Global.NewConfirmed}/>
+                <DataCards title="Total Confirmed" data={props.data.Global.TotalConfirmed}/>
+            </Grid>
+            
+            <Title title="Deaths" />
+            <Grid container spacing={3} direction="row" justify="center" alignItems="flex-start">
+                <DataCards title="New Confirmed" data={props.data.Global.NewDeaths}/>
+                <DataCards title="Total Confirmed" data={props.data.Global.TotalDeaths}/>
+            </Grid>
 
-            </ul>
-        </div>  
+            <Title title="Recovered" />
+            <Grid container spacing={3} direction="row" justify="center" alignItems="flex-start">
+                <DataCards title="New Recovered" data={props.data.Global.NewRecovered}/>
+                <DataCards title="Total Recovered" data={props.data.Global.TotalRecovered}/>
+            </Grid>
+        </Container>
     )
-
-    // const handleDataChange = (e) => {
-    //     props.fetchSummaryData({e.target.value})
-    // }
 }
 
 const mapStateToProps = (state) => {
