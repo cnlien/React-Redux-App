@@ -15,7 +15,9 @@ import '../styles/searchData.scss'
 
 // COMPONENTS
 import DataCards from './DataCards';
-import Header from './Header';
+import GlobalHeader from './GlobalHeader';
+import CountryData from './CountryData';
+import { Divider } from '@material-ui/core';
 
 const SearchData = ( props ) => {
 
@@ -39,7 +41,10 @@ const SearchData = ( props ) => {
 
     return(
         <Container className="dataCards">
-            <Header date={props.data.Date} />
+            
+            <GlobalHeader date={props.data.Date} />
+
+            <Divider />
 
             <Title className="dataCardTitle" title="Cases" />
             <Grid className="dataCardContainer" container spacing={3} direction="row" justify="center" alignItems="flex-start">
@@ -58,6 +63,10 @@ const SearchData = ( props ) => {
                 <DataCards title="New Recovered" data={props.data.Global.NewRecovered}/>
                 <DataCards title="Total Recovered" data={props.data.Global.TotalRecovered}/>
             </Grid>
+
+            <Divider />
+
+            <CountryData />
         </Container>
     )
 }
