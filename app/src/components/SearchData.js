@@ -10,6 +10,9 @@ import Container from '@material-ui/core/Container';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
+// STYLES
+import '../styles/searchData.scss'
+
 // COMPONENTS
 import DataCards from './DataCards';
 import Header from './Header';
@@ -35,23 +38,23 @@ const SearchData = ( props ) => {
     }
 
     return(
-        <Container>
+        <Container className="dataCards">
             <Header date={props.data.Date} />
-            
-            <Title title="Cases" />
-            <Grid container spacing={3} direction="row" justify="center" alignItems="flex-start">
+
+            <Title className="dataCardTitle" title="Cases" />
+            <Grid className="dataCardContainer" container spacing={3} direction="row" justify="center" alignItems="flex-start">
                 <DataCards title="New Confirmed" data={props.data.Global.NewConfirmed}/>
                 <DataCards title="Total Confirmed" data={props.data.Global.TotalConfirmed}/>
             </Grid>
             
-            <Title title="Deaths" />
-            <Grid container spacing={3} direction="row" justify="center" alignItems="flex-start">
-                <DataCards title="New Confirmed" data={props.data.Global.NewDeaths}/>
-                <DataCards title="Total Confirmed" data={props.data.Global.TotalDeaths}/>
+            <Title className="dataCardTitle" title="Deaths" />
+            <Grid className="dataCardContainer" container spacing={3} direction="row" justify="center" alignItems="flex-start">
+                <DataCards title="New Deaths" data={props.data.Global.NewDeaths}/>
+                <DataCards title="Total Deaths" data={props.data.Global.TotalDeaths}/>
             </Grid>
 
-            <Title title="Recovered" />
-            <Grid container spacing={3} direction="row" justify="center" alignItems="flex-start">
+            <Title className="dataCardTitle" title="Recovered" />
+            <Grid className="dataCardContainer" container spacing={3} direction="row" justify="center" alignItems="flex-start">
                 <DataCards title="New Recovered" data={props.data.Global.NewRecovered}/>
                 <DataCards title="Total Recovered" data={props.data.Global.TotalRecovered}/>
             </Grid>
