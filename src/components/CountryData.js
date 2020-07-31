@@ -21,8 +21,6 @@ import CountryHeader from './CountryHeader'
 
 const CountryData = (props) => {
 
-    console.log("Props from CountryData.js: ",props.data.Countries)
-
     return(
         <div>
         <CountryHeader />
@@ -42,7 +40,7 @@ const CountryData = (props) => {
                 <TableBody>
                     {props.data.Countries.map(data => {
                         return (
-                            <TableRow>
+                            <TableRow key={data.Country}>
                                 <TableCell>{data.Country}</TableCell>
                                 <TableCell><NumberFormat displayType={'text'} thousandSeparator={true} value={data.NewDeaths}/></TableCell>
                                 <TableCell><NumberFormat displayType={'text'} thousandSeparator={true} value={data.TotalDeaths}/></TableCell>
@@ -53,7 +51,6 @@ const CountryData = (props) => {
                             </TableRow>
                         );
                      })}
-                    
                 </TableBody>
             </Table>
         </TableContainer>

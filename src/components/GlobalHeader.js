@@ -10,6 +10,7 @@ const GlobalHeader = (props) => {
             <h1 className="mainHeading">Global Covid 19 Statistics</h1>
             <span className="lastUpdatedLabel">Last Updated: </span>
             <Moment className="lastUpdatedTime" format="LL"><span>{props.date}</span></Moment>
+            
         </header>
     )
 }

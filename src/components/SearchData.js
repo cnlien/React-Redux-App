@@ -9,6 +9,7 @@ import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import LinearProgress from '@material-ui/core/LinearProgress';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 // STYLES
 import '../styles/searchData.scss'
@@ -17,13 +18,13 @@ import '../styles/searchData.scss'
 import DataCards from './DataCards';
 import GlobalHeader from './GlobalHeader';
 import CountryData from './CountryData';
-import { Divider } from '@material-ui/core';
+import { Divider, Button } from '@material-ui/core';
 
 const SearchData = ( props ) => {
-
+    
     const Title = (props) => {
         return(
-            <Grid container spacing={12} direction="row">
+            <Grid container direction="row">
                 <h1>{props.title}</h1>
             </Grid>
         )
@@ -31,10 +32,23 @@ const SearchData = ( props ) => {
 
     if (props.isFetching) {
         return(
-            <Container>
+            <Container className="dataCards">
                 <CssBaseline />
                 {props.fetchSummaryData()}
-                <LinearProgress />
+                <GlobalHeader date={props.data.Date} />
+                <div className="fetchDataButtonContainer">
+                <Button
+                    size="large"
+                    className="fetchDataButton"
+                    variant="contained" 
+                    disableElevation
+                    onClick={()=> props.fetchSummaryData()}
+                >
+                    <CircularProgress size={16}/>
+                </Button>
+                <h3>Last Updated: { Date() }</h3>
+            </div>
+            <Divider />
             </Container>
         )
     }
@@ -43,7 +57,18 @@ const SearchData = ( props ) => {
         <Container className="dataCards">
             
             <GlobalHeader date={props.data.Date} />
-
+            <div className="fetchDataButtonContainer">
+                <Button
+                    size="large"
+                    className="fetchDataButton"
+                    variant="contained" 
+                    disableElevation
+                    onClick={()=> props.fetchSummaryData()}
+                >
+                    Update Data
+                </Button>
+                <h3>Last Updated: { Date() }</h3>
+            </div>
             <Divider />
 
             <Title className="dataCardTitle" title="Cases" />

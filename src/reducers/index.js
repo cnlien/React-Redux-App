@@ -1,6 +1,8 @@
 import {
     FETCHING_DATA_START,
+    FETCHING_DATA_SUCCESS,
     FETCHING_DATA_ERROR,
+    UPDATE_DATA
 } from "../actions";
 
 const initialState = {
@@ -14,9 +16,15 @@ export const dataReducer = (state = initialState, action) => {
         case FETCHING_DATA_START:
             return {
                 ...state,
+                isFetching: true,
+            };
+        
+        case FETCHING_DATA_SUCCESS:
+            return {
+                ...state,
                 isFetching: false,
                 data: action.payload
-            };
+            }
         
         case FETCHING_DATA_ERROR:
             return {
@@ -24,6 +32,11 @@ export const dataReducer = (state = initialState, action) => {
                 isFetching: false,
                 error: action.payload
             };
+        case UPDATE_DATA:
+            return {
+                ...state,
+                fetching: true,
+            }
         
         default:
             return state;
